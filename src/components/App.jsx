@@ -1,49 +1,86 @@
-import { Container } from 'styles/Container.styled';
-import { ContactsList } from './ContactsList/ContactsList';
-import { Form } from './Form/Form';
-import { Filter } from './Filter/Filter';
+// import { Container } from 'styles/Container.styled';
+// import { ContactsList } from './ContactsList/ContactsList';
+// import { Form } from './Form/Form';
+// import { Filter } from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { selectError, selectIsLoading } from 'redux/selectors';
+// import { selectContacts } from 'redux/selectors';
+// import { selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
-// import { Route, Routes } from 'react-router-dom';
-// import { lazy } from 'react';
+// import { fetchContacts } from 'redux/operations';
+import { Layout } from './Layout';
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivatRoute';
+import { refreshUser } from 'redux/auth/auth-operations';
+import { selectIsRefreshing } from 'redux/auth/auth-selectors';
 
-// export const App = () => {
-//   return (
-//     <Routes>
-//       <Route path="/" element={<Layout />}>
-//         <Route index element={<Homepage />} />
-//         <Route path="/register" element={<RegisterPage />} />
-//         <Route path="/login" element={<LoginPage />} />
-//         <Route path="/contacts" element={<ContactsPage />} />
-//       </Route>
-//     </Routes>
-//   );
-// };
+const Homepage = lazy(() => import('../pages/Homepage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 
 export const App = () => {
-  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  console.log(contacts);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <Container>
-      <h1>Phonebook</h1>
-      <Form />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <h2>Contacts</h2>
-      {contacts.length > 0 && <Filter />}
-      {contacts.length > 0 && <ContactsList></ContactsList>}
-    </Container>
+    !isRefreshing && (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Homepage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={RegisterPage}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/contacts" />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={ContactsPage} redirectTo={'/login'} />
+            }
+          />
+        </Route>
+      </Routes>
+    )
   );
 };
 
-//
+// export const App = () => {
+//   const contacts = useSelector(selectContacts);
+//   const dispatch = useDispatch();
+//   const isLoading = useSelector(selectIsLoading);
+//   const error = useSelector(selectError);
+//   console.log(contacts);
+
+//   useEffect(() => {
+//     dispatch(fetchContacts());
+//   }, [dispatch]);
+
+//   return (
+//     <Container>
+//       <h1>Phonebook</h1>
+//       <Form />
+//       {isLoading && !error && <b>Request in progress...</b>}
+//       <h2>Contacts</h2>
+//       {contacts.length > 0 && <Filter />}
+//       {contacts.length > 0 && <ContactsList></ContactsList>}
+//     </Container>
+//   );
+// };
+
+// //
