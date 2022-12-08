@@ -7,6 +7,21 @@ import { selectContacts } from 'redux/selectors';
 import { selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
+// import { Route, Routes } from 'react-router-dom';
+// import { lazy } from 'react';
+
+// export const App = () => {
+//   return (
+//     <Routes>
+//       <Route path="/" element={<Layout />}>
+//         <Route index element={<Homepage />} />
+//         <Route path="/register" element={<RegisterPage />} />
+//         <Route path="/login" element={<LoginPage />} />
+//         <Route path="/contacts" element={<ContactsPage />} />
+//       </Route>
+//     </Routes>
+//   );
+// };
 
 export const App = () => {
   const contacts = useSelector(selectContacts);
