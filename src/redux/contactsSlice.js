@@ -44,11 +44,13 @@ const contactsSlice = createSlice({
       );
     },
     [deleteContact.rejected]: handleRejected,
+    [logOut.pending]: handlePending,
     [logOut.fulfilled](state) {
       state.items = [];
       state.error = null;
       state.isLoading = false;
     },
+    [logOut.rejected]: handleRejected,
   },
 });
 
