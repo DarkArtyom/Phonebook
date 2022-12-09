@@ -37,7 +37,7 @@ export const App = () => {
             path="/register"
             element={
               <RestrictedRoute
-                component={RegisterPage}
+                component={<RegisterPage />}
                 redirectTo="/contacts"
               />
             }
@@ -45,13 +45,19 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute component={LoginPage} redirectTo="/contacts" />
+              <RestrictedRoute
+                component={<LoginPage />}
+                redirectTo="/contacts"
+              />
             }
           />
           <Route
             path="/contacts"
             element={
-              <PrivateRoute component={ContactsPage} redirectTo={'/login'} />
+              <PrivateRoute
+                component={<ContactsPage />}
+                redirectTo={'/login'}
+              />
             }
           />
         </Route>
@@ -59,28 +65,3 @@ export const App = () => {
     )
   );
 };
-
-// export const App = () => {
-//   const contacts = useSelector(selectContacts);
-//   const dispatch = useDispatch();
-//   const isLoading = useSelector(selectIsLoading);
-//   const error = useSelector(selectError);
-//   console.log(contacts);
-
-//   useEffect(() => {
-//     dispatch(fetchContacts());
-//   }, [dispatch]);
-
-//   return (
-//     <Container>
-//       <h1>Phonebook</h1>
-//       <Form />
-//       {isLoading && !error && <b>Request in progress...</b>}
-//       <h2>Contacts</h2>
-//       {contacts.length > 0 && <Filter />}
-//       {contacts.length > 0 && <ContactsList></ContactsList>}
-//     </Container>
-//   );
-// };
-
-// //
