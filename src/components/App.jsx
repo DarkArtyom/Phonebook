@@ -1,12 +1,5 @@
-// import { Container } from 'styles/Container.styled';
-// import { ContactsList } from './ContactsList/ContactsList';
-// import { Form } from './Form/Form';
-// import { Filter } from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-// import { selectContacts } from 'redux/selectors';
-// import { selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
-// import { fetchContacts } from 'redux/operations';
 import { Layout } from './Layout';
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
