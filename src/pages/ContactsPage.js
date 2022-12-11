@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { ContactsList } from 'components/ContactsList/ContactsList';
-import { Form } from 'components/Form/Form';
+import { Form } from 'components/FormContacts/Form';
 import { fetchContacts } from 'redux/operations';
 
 import { Container } from 'styles/Container.styled';
