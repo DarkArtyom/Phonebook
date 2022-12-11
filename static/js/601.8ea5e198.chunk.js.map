@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/601.8ea5e198.chunk.js","mappings":"iMAAe,SAASA,IACtB,OACE,0BACE,sDAGL,C","sources":["pages/Homepage.js"],"sourcesContent":["export default function Homepage() {\n  return (\n    <div>\n      <h1>Welcome to contacts list</h1>\n    </div>\n  );\n}\n"],"names":["Homepage"],"sourceRoot":""}
