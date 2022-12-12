@@ -11,9 +11,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { contactsReducer } from './contactsSlice';
-import { authReducer } from './auth/auth-slice';
-import { filterReducer } from './filterSlice';
+import { contactsReducer } from '../redux/contacts/contactsSlice';
+import { authReducer } from '../redux/auth/authSlice';
+import { filterReducer } from '../redux/filterContacts/filterSlice';
 
 // import { tasksReducer } from './tasks/slice';
 // import { authReducer } from './auth/slice';

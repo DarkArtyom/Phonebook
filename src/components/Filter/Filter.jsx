@@ -1,6 +1,6 @@
 import { LabelSearch, InputSearch } from './Filter.styled.js';
 import { useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/filterSlice.js';
+import { filterContacts } from 'redux/filterContacts/filterSlice.js';
 
 export const Filter = ({ value }) => {
   const dispatch = useDispatch();

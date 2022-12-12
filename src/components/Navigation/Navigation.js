@@ -1,4 +1,4 @@
-import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 
 import { StyledLink } from 'components/AuthNav/AuthNav.styled';

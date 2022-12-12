@@ -1,6 +1,6 @@
-import { selectUserName } from 'redux/auth/auth-selectors';
+import { selectUserName } from 'redux/auth/authSelectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from 'redux/auth/auth-operations';
+import { logOut } from 'redux/auth/authOperations';
 import { UserMenuWrap, UserNameText } from './UserMenu.styled';
 
 import { ButtonSubmit } from 'components/FormContacts/Form.styled';

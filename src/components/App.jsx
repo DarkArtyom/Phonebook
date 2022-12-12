@@ -5,8 +5,9 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivatRoute';
-import { refreshUser } from 'redux/auth/auth-operations';
-import { selectIsRefreshing } from 'redux/auth/auth-selectors';
+import { refreshUser } from 'redux/auth/authOperations';
+import { selectIsRefreshing } from 'redux/auth/authSelectors';
+import NotFound from '../pages/404.NotFound';
 
 const Homepage = lazy(() => import('../pages/Homepage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -50,6 +51,7 @@ export const App = () => {
               />
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     )
